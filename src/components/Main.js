@@ -17,10 +17,10 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       ]
     )
     .then((results) => {
-      const getUserInfoResult = results[0];
-      const getInitialCardsResult = results[1];
+      const userInfo = results[0];
+      const initialCards = results[1];
 
-      const items = getInitialCardsResult.map(item => ({
+      const items = initialCards.map(item => ({
         id: item._id,
         name: item.name,
         link: item.link,
@@ -28,31 +28,14 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         ownerId: item.owner._id
       }));
 
-      setUserName(getUserInfoResult.name);
-      setUserDescription(getUserInfoResult.about);
-      setUserAvatar(getUserInfoResult.avatar);
+      setUserName(userInfo.name);
+      setUserDescription(userInfo.about);
+      setUserAvatar(userInfo.avatar);
     
       setCards(items.reverse());
     })
     .catch(err => alert(err));
   }, []);
-
-  React.useEffect(() => {
-    api.getInitialCards()
-    .then(response => {
-      const items = response.map(item => ({
-        id: item._id,
-        name: item.name,
-        link: item.link,
-        likes: item.likes,
-        ownerId: item.owner._id
-      }));
-
-      setCards(items.reverse());
-    })
-    .catch(err => alert(err));
-  }, []);
-
   
   return (
     <main className="content page__content">

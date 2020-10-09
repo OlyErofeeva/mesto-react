@@ -1,11 +1,14 @@
 import React from 'react';
 
-function Card({ id, name, link, likes, ownerId, onCardClick }) {
+function Card({ name, link, likes, onCardClick }) {
+  const cardClickHandler = () => {
+    onCardClick({ name, link });
+  };
 
   return (
     <li className="card">
       <div className="card__photo-container">
-        <img className="card__photo" src={link} alt={name} onClick={() => {onCardClick({ name, link });}}/>
+        <img className="card__photo" src={link} alt={name} onClick={cardClickHandler}/>
       </div>
       <div className="card__info">
         <h2 className="card__caption">{name}</h2>

@@ -35,6 +35,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
+  // Если закрывать поп-ап с картинкой через обнулление selectedCard, анимация закрытия будет не такой плавной: сначала из поп-апа пропадёт контент, останется "крестик" по центру экрана, потом крестик "растворится". Закрытие через isImagePopupOpen менее изящно и не так экономично (selectedCard остаётся в памяти), но нужно для визуально привычной анимации.
   const [selectedCard, setSelectedCard] = React.useState({});
 
   return (
