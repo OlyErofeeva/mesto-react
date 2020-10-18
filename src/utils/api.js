@@ -196,7 +196,7 @@ class Api {
 
   /**
    * dislikeCard & likeCard response structures are the same
-   * @param {*} cardId - Id of the card that user dislikes.
+   * @param {string} cardId - Id of the card that user dislikes.
    */
   dislikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
@@ -206,6 +206,10 @@ class Api {
     .then(this._onError);
   }
 
+  /**
+   * @param {string} cardId - Id of the card that user likes/dislikes.
+   * @param {boolean} isLiked - true if the card is liked.
+   */
   changeLikeCardStatus(cardId, isLiked) {
     return isLiked
     ? this.dislikeCard(cardId)
