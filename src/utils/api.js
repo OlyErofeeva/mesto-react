@@ -86,10 +86,9 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({
-        name: newData.newProfileFullName,
-        about: newData.newProfileBio
-      })
+      body: JSON.stringify({ 
+        name: newData.name, 
+        about: newData.about })
     })
     .then(this._onError);
   }
@@ -139,8 +138,8 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: cardData.newPlaceCaption,
-        link: cardData.newPlaceLink
+        name: cardData.name,
+        link: cardData.link
       })
     })
     .then(this._onError);
@@ -185,7 +184,7 @@ class Api {
         },
         "createdAt": "2020-09-14T14:55:08.012Z"
       }
-   * @param {string} cardId - Id of the card that user wants to like.
+   * @param {string} cardId - Id of the card that user likes.
    */
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
@@ -197,7 +196,7 @@ class Api {
 
   /**
    * dislikeCard & likeCard response structures are the same
-   * @param {*} cardId - Id of the card that user wants to remove the like from.
+   * @param {*} cardId - Id of the card that user dislikes.
    */
   dislikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
@@ -205,6 +204,12 @@ class Api {
       headers: this._headers
     })
     .then(this._onError);
+  }
+
+  changeLikeCardStatus(cardId, isLiked) {
+    return isLiked
+    ? this.dislikeCard(cardId)
+    : this.likeCard(cardId)
   }
 }
 

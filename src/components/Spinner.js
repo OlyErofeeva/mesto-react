@@ -1,4 +1,3 @@
-// not used yet
 import React from 'react';
 
 function Spinner() {

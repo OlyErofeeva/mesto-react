@@ -1,63 +1,51 @@
 import React from 'react';
-import { api } from '../utils/api';
 import Card from './Card';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('#');
-  const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    Promise.all(
-      [
-        api.getUserInfo(),
-        api.getInitialCards()
-      ]
-    )
-    .then((results) => {
-      const userInfo = results[0];
-      const initialCards = results[1];
-
-      const items = initialCards.map(item => ({
-        id: item._id,
-        name: item.name,
-        link: item.link,
-        likes: item.likes,
-        ownerId: item.owner._id
-      }));
-
-      setUserName(userInfo.name);
-      setUserDescription(userInfo.about);
-      setUserAvatar(userInfo.avatar);
-    
-      setCards(items.reverse());
-    })
-    .catch(err => alert(err));
-  }, []);
+function Main({ onEditProfile, onAddPlace, onEditAvatar, cards, onCardClick, onCardLike, onCardDelete }) {
+  const currentUser = React.useContext(CurrentUserContext);
   
   return (
     <main className="content page__content">
       <section className="profile page__profile">
         <div className="profile__container">
           <div className="profile__avatar-container" onClick={onEditAvatar}>
-            <img className="profile__avatar" src={userAvatar} alt="Аватар пользователя"/>
+            <img
+              className="profile__avatar"
+              src={currentUser.avatar}
+              alt="Аватар пользователя"
+            />
           </div>
           <div className="profile__flex-column">
             <div className="profile__flex-row">
-              <h1 className="profile__full-name">{userName}</h1>
-              <button className="profile__edit-button" type="button" onClick={onEditProfile}></button>
+              <h1 className="profile__full-name">{currentUser.name}</h1>
+              <button
+                className="profile__edit-button"
+                type="button"
+                onClick={onEditProfile}
+              ></button>
             </div>
-            <p className="profile__bio">{userDescription}</p>
+            <p className="profile__bio">{currentUser.about}</p>
           </div>
         </div>
-        <button className="add-button" type="button" onClick={onAddPlace}></button>
+        <button
+          className="add-button"
+          type="button"
+          onClick={onAddPlace}
+        ></button>
       </section>
 
       <section className="gallery">
         <ul className="cards-container">
-          {cards.map(item => <Card {...item} key={item.id} onCardClick={onCardClick}/>)}
+          {cards.map(item => (
+            <Card
+              {...item}
+              key={item._id}
+              onCardClick={onCardClick}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
+            />
+          ))}
         </ul>
       </section>
     </main>
