@@ -73,7 +73,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace}) {
           isSubmitDisabled={!captionInput.isValid || !linkInput.isValid}
         >
           <input
-            className="form__input"
+            className="form__input form__input_theme_light"
             type="text"
             name="newPlaceCaption"
             placeholder="Название"
@@ -86,7 +86,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace}) {
           <span className="form__error" id="newPlaceCaption-error">{captionInput.errorMessage}</span>
 
           <input
-            className="form__input"
+            className="form__input form__input_theme_light"
             type="url"
             name="newPlaceLink"
             placeholder="Ссылка на картинку"

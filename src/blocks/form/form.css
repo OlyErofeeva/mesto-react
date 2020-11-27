@@ -6,13 +6,60 @@
 @import url(__error/form__error.css);
 @import url(__submit-button/_disabled/form__submit-button_disabled.css);
 
+.auth-container {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100% - 2*40px);
+  width: 430px;
+  margin: 0 auto;
+}
+
 .form {
-  position: relative;
-  box-sizing: border-box;
-  max-width: 430px;
+  flex: 1 0 auto;
   padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form_theme_light {
   background-color: #fff;
   border-radius: 10px;
+}
+
+.form_theme_dark {
+  background-color: transparent;
+}
+
+.form__title_theme_light {
+  color: #000;
+}
+
+.form__title_theme_dark {
+  color: #fff;
+}
+
+.form__input_theme_light {
+  color: #000;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.form__input_theme_dark {
+  color: #fff;
+  background-color: #000;
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+.form__submit-button_theme_light {
+  background-color: #000;
+  color: #fff;
+}
+
+.form__submit-button_theme_dark {
+  background-color: #fff;
+  color: #000;
 }
 
 @media screen and (max-width: 550px) {

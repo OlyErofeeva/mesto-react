@@ -50,7 +50,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       isSubmitDisabled={!avatarValidity.isValid}
     >
       <input
-        className="form__input"
+        className="form__input form__input_theme_light"
         type="url"
         name="newAvatarLink"
         placeholder="Ссылка на картинку"

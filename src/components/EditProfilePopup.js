@@ -77,7 +77,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       isSubmitDisabled={!nameInput.isValid || !descriptionInput.isValid}
     >
       <input
-        className="form__input"
+        className="form__input form__input_theme_light"
         type="text"
         name="newProfileFullName"
         placeholder="Полное имя"
@@ -92,7 +92,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       </span>
 
       <input
-        className="form__input"
+        className="form__input form__input_theme_light"
         type="text"
         name="newProfileBio"
         placeholder="О себе"
