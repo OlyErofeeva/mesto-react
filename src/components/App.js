@@ -1,10 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom'
 import Header from './Header';
 import Spinner from './Spinner';
-import Login from './Login';
-import Register from './Register';
-import InfoTooltip from './InfoTooltip';
 import Main from './Main';
 import Footer from './Footer';
 import EditProfilePopup from './EditProfilePopup';
@@ -164,35 +160,21 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <div className="page__container">
           <Header />
-          <Switch>
-            <Route path="/sign-in">
-              <Login />
-            </Route>
-
-            <Route path="/sign-up">
-              <Register />
-            </Route>
-
-            <Route exact path="/">
-              {isLoading ? (
-                <Spinner />
-              ) : (
-                <Main
-                  onEditProfile={handleEditProfileClick}
-                  onAddPlace={handleAddPlaceClick}
-                  onEditAvatar={handleEditAvatarClick}
-                  cards={cards}
-                  onCardClick={handleCardClick}
-                  onCardLike={handleCardLike}
-                  onCardDelete={handleCardDelete}
-                />
-              )}
-            </Route>
-          </Switch>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <Main
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              cards={cards}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
+            />
+          )}
           <Footer />
         </div>
-
-        <InfoTooltip />
 
         <EditProfilePopup 
           isOpen={isEditProfilePopupOpen} 
